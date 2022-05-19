@@ -198,7 +198,7 @@ rdp_peer_refresh_rfx(pixman_region32_t *damage, pixman_image_t *image, freerdp_p
 	uint32_t *ptr;
 	RFX_RECT *rfxRect;
 	rdpUpdate *update = peer->update;
-	SURFACE_BITS_COMMAND *cmd = &update->surface_bits_command;
+	SURFACE_BITS_COMMAND *cmd = &update->SurfaceBits;
 	RdpPeerContext *context = (RdpPeerContext *)peer->context;
 
 	Stream_Clear(context->encode_stream);
@@ -255,7 +255,7 @@ rdp_peer_refresh_nsc(pixman_region32_t *damage, pixman_image_t *image, freerdp_p
 	int width, height;
 	uint32_t *ptr;
 	rdpUpdate *update = peer->update;
-	SURFACE_BITS_COMMAND *cmd = &update->surface_bits_command;
+	SURFACE_BITS_COMMAND *cmd = &update->SurfaceBits;
 	RdpPeerContext *context = (RdpPeerContext *)peer->context;
 
 	Stream_Clear(context->encode_stream);
@@ -310,8 +310,8 @@ static void
 rdp_peer_refresh_raw(pixman_region32_t *region, pixman_image_t *image, freerdp_peer *peer)
 {
 	rdpUpdate *update = peer->update;
-	SURFACE_BITS_COMMAND *cmd = &update->surface_bits_command;
-	SURFACE_FRAME_MARKER *marker = &update->surface_frame_marker;
+	SURFACE_BITS_COMMAND *cmd = &update->SurfaceBits;
+	SURFACE_FRAME_MARKER *marker = &update->SurfaceFrameMarker;
 	pixman_box32_t *rect, subrect;
 	int nrects, i;
 	int heightIncrement, remainingHeight, top;
@@ -956,6 +956,7 @@ xf_peer_activate(freerdp_peer* client)
 	pixman_box32_t box;
 	pixman_region32_t damage;
 	char seat_name[50];
+	POINTER_SYSTEM_UPDATE pointer_system;
 
 
 	peerCtx = (RdpPeerContext *)client->context;
@@ -1056,8 +1057,8 @@ xf_peer_activate(freerdp_peer* client)
 
 	/* disable pointer on the client side */
 	pointer = client->update->pointer;
-	pointer->pointer_system.type = SYSPTR_NULL;
-	pointer->PointerSystem(client->context, &pointer->pointer_system);
+	pointer_system.type = SYSPTR_NULL;
+	pointer->PointerSystem(client->context, &pointer_system);
 
 	/* sends a full refresh */
 	box.x1 = 0;
