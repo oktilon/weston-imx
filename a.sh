@@ -7,6 +7,13 @@ SYSROOT="/home/denis/projects/defigo/sysroot"
 # export PKG_CONFIG_LIBDIR="${SYSROOT}/usr/lib/pkgconfig:${SYSROOT}/usr/share/pkgcongif"
 export PKG_CONFIG_SYSROOT_DIR="${SYSROOT}"
 
+I1="-I${SYSROOT}/usr/include/vivante"
+I2="-I${SYSROOT}/usr/include/libdrm"
+I3="-I${SYSROOT}/usr/lib/aarch64-linux-gnu/glib-2.0/include"
+I4="-I${SYSROOT}/usr/lib/aarch64-linux-gnu/dbus-1.0/include"
+
+L1="${SYSROOT}/usr/lib/aarch64-linux-gnu"
+
 autoreconf --force -v --install
 
 #	--with-sysroot=/home/imx8/InstallQt/sysroot \
@@ -19,8 +26,8 @@ autoreconf --force -v --install
 	# CPP="${TOOLCHAIN}/aarch64-linux-gnu-cpp" \
 	# LD="${TOOLCHAIN}/aarch64-linux-gnu-ld" \
 ./configure --host aarch64-linux-gnu --build x86_64-linux-gnu \
-	CFLAGS="--sysroot=${SYSROOT} -I${SYSROOT}/usr/include/vivante -I${SYSROOT}/usr/include/libdrm -I${SYSROOT}/usr/lib/aarch64-linux-gnu/glib-2.0/include -Wl,-rpath-link,${SYSROOT}/usr/lib/aarch64-linux-gnu,--allow-shlib-undefined,-verbose" \
-	CPPFLAGS="--sysroot=${SYSROOT} -I${SYSROOT}/usr/include/vivante" \
+    --prefix="/home/denis/projects/defigo/weston-deb/build" \
+	CFLAGS="--sysroot=${SYSROOT} ${I1} ${I2} ${I3} ${I4} -Wl,-rpath-link,${L1},--allow-shlib-undefined" \
 	LDFLAGS="--sysroot=${SYSROOT}" \
 	--with-sysroot="${SYSROOT}" \
 	--with-cairo=image \
@@ -37,4 +44,16 @@ autoreconf --force -v --install
 	--disable-simple-dmabuf-drm-client \
 	--enable-weston-launch
 
+# find usr -type f -exec md5sum {} > md5sums \;
 
+# dpkg-deb --build --root-owner-group weston_5.0.0-3-var-dpu-g2d_arm64
+
+#debmake -p',libweston-5,libweston-5-dev' \
+#-v 5.0.0 -r 3-var-gpu-d2d \
+#-b"weston:bin,libweston-5:lib,libweston-5-dev:dev" \
+#-e debian-x@lists.debian.org -f "Debian X Strike Force" \
+#-j -m
+#
+# debmake [-h] [-c | -k] [-n | -a package-version.orig.tar.gz | -d | -t ] [-p package] [-u version] [-r revision] [-z extension] [-b
+    #    "binarypackage, ...]" [-e foo@example.org] [-f "firstname lastname"] [-i "buildtool" | -j] [-l license_file] [-m] [-o file] [-q] [-s]
+    #    [-v] [-w "addon, ..."] [-x [01234]] [-y] [-L] [-P] [-T]

@@ -102,6 +102,7 @@ matrix-test
 setbacklight
 weston.1
 weston-drm.7
+weston-rdp.7
 weston.ini.5
 
 /libweston/git-version.h
@@ -109,6 +110,11 @@ weston.ini.5
 
 /tests/weston-ivi.ini
 internal-screenshot-00.png
+weston_5.0.0-3-var-dpu-g2d-rdp_arm64/**
+libweston-5-0_5.0.0-3-var-dpu-g2d-rdp_arm64/**
+libweston-5-dev_5.0.0-3-var-dpu-g2d-rdp_arm64/**
+*.deb
+
 
 /zuctest
 .vscode*
