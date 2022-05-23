@@ -46,7 +46,7 @@ autoreconf --force -v --install
 
 # find usr -type f -exec md5sum {} > md5sums \;
 
-# dpkg-deb --build --root-owner-group weston_5.0.0-3-var-dpu-g2d_arm64
+# dpkg-deb --root-owner-group --build weston_5.0.0-3-var-dpu-g2d_arm64
 
 #debmake -p',libweston-5,libweston-5-dev' \
 #-v 5.0.0 -r 3-var-gpu-d2d \
