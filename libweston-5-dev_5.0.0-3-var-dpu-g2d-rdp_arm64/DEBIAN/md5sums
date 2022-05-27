@@ -1,5 +1,5 @@
-f7d50840a2c6ab3e72faac6be919a502  usr/lib/aarch64-linux-gnu/pkgconfig/libweston-5.pc
-ac89f53be3a947ee319987a626d8ec6d  usr/lib/aarch64-linux-gnu/pkgconfig/libweston-desktop-5.pc
+4b602afc5912a1cf2cfb9181717f69df  usr/lib/aarch64-linux-gnu/pkgconfig/libweston-5.pc
+2a1205175dc57936b5f98e41da575af8  usr/lib/aarch64-linux-gnu/pkgconfig/libweston-desktop-5.pc
 067e56c97f0b8fab38bed36095235637  usr/include/libweston-5/matrix.h
 06cf1787cb0eb1b78c42bff3b133c197  usr/include/libweston-5/plugin-registry.h
 199f74f72e590008435666f281f2f468  usr/include/libweston-5/compositor-headless.h
@@ -16,5 +16,5 @@ fee9b9d79c266a73fa80d95e33ab77e2  usr/include/libweston-5/compositor-fbdev.h
 45148eb7d13d7b28cc7217bc3183bf42  usr/include/libweston-5/compositor-x11.h
 6bc2aebe2475ee46aae0caeb7b724d91  usr/include/libweston-5/config-parser.h
 5762de5a1912ad14dec5731e75ca6470  usr/include/libweston-5/libweston-desktop.h
-b4b21a8d7d20df69fc011a5acca21b7e  usr/share/doc/libweston-5-dev/changelog.Debian.gz
-a16723697141ed7fc2c753e5c85f148c  usr/share/doc/libweston-5-dev/copyright
+aa854d2748757fa65749534a4b8e138a  usr/share/doc/libweston-5-dev/changelog.Debian.gz
+9da9731231631f945b57cdce62da2632  usr/share/doc/libweston-5-dev/copyright

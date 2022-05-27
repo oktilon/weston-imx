@@ -1,0 +1,371 @@
+`configure' configures weston 5.0.0 to adapt to many kinds of systems.
+
+Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+To assign environment variables (e.g., CC, CFLAGS...), specify them as
+VAR=VALUE.  See below for descriptions of some of the useful variables.
+
+Defaults for the options are specified in brackets.
+
+Configuration:
+  -h, --help              display this help and exit
+      --help=short        display options specific to this package
+      --help=recursive    display the short help of all the included packages
+  -V, --version           display version information and exit
+  -q, --quiet, --silent   do not print `checking ...' messages
+      --cache-file=FILE   cache test results in FILE [disabled]
+  -C, --config-cache      alias for `--cache-file=config.cache'
+  -n, --no-create         do not create output files
+      --srcdir=DIR        find the sources in DIR [configure dir or `..']
+
+Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+
+By default, `make install' will install all the files in
+`/usr/local/bin', `/usr/local/lib' etc.  You can specify
+an installation prefix other than `/usr/local' using `--prefix',
+for instance `--prefix=$HOME'.
+
+For better control, use the options below.
+
+Fine tuning of the installation directories:
+  --bindir=DIR            user executables [EPREFIX/bin]
+  --sbindir=DIR           system admin executables [EPREFIX/sbin]
+  --libexecdir=DIR        program executables [EPREFIX/libexec]
+  --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
+  --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
+  --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
+  --libdir=DIR            object code libraries [EPREFIX/lib]
+  --includedir=DIR        C header files [PREFIX/include]
+  --oldincludedir=DIR     C header files for non-gcc [/usr/include]
+  --datarootdir=DIR       read-only arch.-independent data root [PREFIX/share]
+  --datadir=DIR           read-only architecture-independent data [DATAROOTDIR]
+  --infodir=DIR           info documentation [DATAROOTDIR/info]
+  --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
+  --mandir=DIR            man documentation [DATAROOTDIR/man]
+  --docdir=DIR            documentation root [DATAROOTDIR/doc/weston]
+  --htmldir=DIR           html documentation [DOCDIR]
+  --dvidir=DIR            dvi documentation [DOCDIR]
+  --pdfdir=DIR            pdf documentation [DOCDIR]
+  --psdir=DIR             ps documentation [DOCDIR]
+
+Program names:
+  --program-prefix=PREFIX            prepend PREFIX to installed program names
+  --program-suffix=SUFFIX            append SUFFIX to installed program names
+  --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
+System types:
+  --build=BUILD     configure for building on BUILD [guessed]
+  --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --disable-largefile     omit support for large files
+  --enable-dependency-tracking
+                          do not reject slow dependency extractors
+  --disable-dependency-tracking
+                          speeds up one-time build
+  --enable-silent-rules   less verbose build output (undo: "make V=1")
+  --disable-silent-rules  verbose build output (undo: "make V=0")
+  --enable-static[=PKGS]  build static libraries [default=no]
+  --enable-shared[=PKGS]  build shared libraries [default=yes]
+  --enable-fast-install[=PKGS]
+                          optimize for fast installation [default=yes]
+  --disable-libtool-lock  avoid locking (might break parallel builds)
+  --disable-devdocs       do not enable building of developer documentation
+  --disable-egl
+  --disable-opengl
+  --disable-imxgpu
+  --disable-imxg2d
+  --enable-setuid-install
+  --enable-xwayland
+  --enable-xwayland-test
+  --enable-x11-compositor
+  --enable-drm-compositor
+  --enable-wayland-compositor
+  --enable-headless-compositor
+  --enable-fbdev-compositor
+  --enable-rdp-compositor
+  --enable-screen-sharing
+  --enable-vaapi-recorder
+  --disable-simple-clients
+                          do not build the simple wl_shm clients
+  --disable-simple-egl-clients
+                          do not build the simple EGL clients
+  --disable-simple-dmabuf-drm-client
+                          do not build the simple dmabuf drm client
+  --disable-simple-dmabuf-v4l-client
+                          do not build the simple dmabuf v4l client
+  --enable-clients
+  --disable-resize-optimization
+                          disable resize optimization allocating a big buffer
+                          in toytoolkit
+  --enable-weston-launch
+  --disable-fullscreen-shell
+                          do not build fullscreen-shell server plugin
+  --disable-colord        do not build colord CMS support
+  --disable-dbus          do not build with dbus support
+  --enable-systemd-login  Enable logind support
+  --disable-junit-xml     do not build with JUnit XML output
+  --disable-ivi-shell     do not build ivi-shell server plugin and client
+  --disable-wcap-tools
+  --enable-demo-clients-install
+                          Install demo clients built with weston
+  --disable-lcms          Disable lcms support
+  --enable-systemd-notify Enables systemd notifications to notify systemd
+                          about weston state and update watchdog. Also sockets
+                          provided by systemd in case of socket-base
+                          activation are added to wayland display
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-pic[=PKGS]       try to use only PIC/non-PIC objects [default=use
+                          both]
+  --with-aix-soname=aix|svr4|both
+                          shared library versioning (aka "SONAME") variant to
+                          provide on AIX, [default=aix].
+  --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
+  --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
+                          compiler's sysroot if not specified).
+  --with-xserver-path=PATH
+                          Path to X server
+  --with-cairo=[image|gl|glesv2]
+			   Which Cairo renderer to use for the clients
+
+  --with-cairo-glesv2     Use GLESv2 cairo
+  --without-jpeg          Use jpeglib for JPEG decoding support [default=auto]
+  --without-webp          Use libwebp for WebP decoding support [default=auto]
+
+Some influential environment variables:
+  CC          C compiler command
+  CFLAGS      C compiler flags
+  LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
+              nonstandard directory <lib dir>
+  LIBS        libraries to pass to the linker, e.g. -l<library>
+  CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
+              you have headers in a nonstandard directory <include dir>
+  CPP         C preprocessor
+  LT_SYS_LIBRARY_PATH
+              User-defined run-time library search path.
+  WESTON_NATIVE_BACKEND
+              Set the native backend to use, if Weston is not running under
+              Wayland nor X11. [default=drm-backend.so]
+  WESTON_SHELL_CLIENT
+              Set the default desktop shell client to load if none is
+              specified in weston.ini. [default=weston-desktop-shell]
+  PKG_CONFIG  path to pkg-config utility
+  PKG_CONFIG_PATH
+              directories to add to pkg-config's search path
+  PKG_CONFIG_LIBDIR
+              path overriding pkg-config's built-in search path
+  LIBDRM_CFLAGS
+              C compiler flags for LIBDRM, overriding pkg-config
+  LIBDRM_LIBS linker flags for LIBDRM, overriding pkg-config
+  EGL_CFLAGS  C compiler flags for EGL, overriding pkg-config
+  EGL_LIBS    linker flags for EGL, overriding pkg-config
+  EGL_TESTS_CFLAGS
+              C compiler flags for EGL_TESTS, overriding pkg-config
+  EGL_TESTS_LIBS
+              linker flags for EGL_TESTS, overriding pkg-config
+  OPENGL_CFLAGS
+              C compiler flags for OPENGL, overriding pkg-config
+  OPENGL_LIBS linker flags for OPENGL, overriding pkg-config
+  GL_RENDERER_CFLAGS
+              C compiler flags for GL_RENDERER, overriding pkg-config
+  GL_RENDERER_LIBS
+              linker flags for GL_RENDERER, overriding pkg-config
+  XKBCOMMON_COMPOSE_CFLAGS
+              C compiler flags for XKBCOMMON_COMPOSE, overriding pkg-config
+  XKBCOMMON_COMPOSE_LIBS
+              linker flags for XKBCOMMON_COMPOSE, overriding pkg-config
+  XWAYLAND_CFLAGS
+              C compiler flags for XWAYLAND, overriding pkg-config
+  XWAYLAND_LIBS
+              linker flags for XWAYLAND, overriding pkg-config
+  XWAYLAND_TEST_CFLAGS
+              C compiler flags for XWAYLAND_TEST, overriding pkg-config
+  XWAYLAND_TEST_LIBS
+              linker flags for XWAYLAND_TEST, overriding pkg-config
+  XCB_CFLAGS  C compiler flags for XCB, overriding pkg-config
+  XCB_LIBS    linker flags for XCB, overriding pkg-config
+  X11_COMPOSITOR_XKB_CFLAGS
+              C compiler flags for X11_COMPOSITOR_XKB, overriding pkg-config
+  X11_COMPOSITOR_XKB_LIBS
+              linker flags for X11_COMPOSITOR_XKB, overriding pkg-config
+  X11_COMPOSITOR_CFLAGS
+              C compiler flags for X11_COMPOSITOR, overriding pkg-config
+  X11_COMPOSITOR_LIBS
+              linker flags for X11_COMPOSITOR, overriding pkg-config
+  DRM_COMPOSITOR_CFLAGS
+              C compiler flags for DRM_COMPOSITOR, overriding pkg-config
+  DRM_COMPOSITOR_LIBS
+              linker flags for DRM_COMPOSITOR, overriding pkg-config
+  DRM_COMPOSITOR_MODIFIERS_CFLAGS
+              C compiler flags for DRM_COMPOSITOR_MODIFIERS, overriding
+              pkg-config
+  DRM_COMPOSITOR_MODIFIERS_LIBS
+              linker flags for DRM_COMPOSITOR_MODIFIERS, overriding pkg-config
+  DRM_COMPOSITOR_ATOMIC_CFLAGS
+              C compiler flags for DRM_COMPOSITOR_ATOMIC, overriding
+              pkg-config
+  DRM_COMPOSITOR_ATOMIC_LIBS
+              linker flags for DRM_COMPOSITOR_ATOMIC, overriding pkg-config
+  DRM_COMPOSITOR_FORMATS_BLOB_CFLAGS
+              C compiler flags for DRM_COMPOSITOR_FORMATS_BLOB, overriding
+              pkg-config
+  DRM_COMPOSITOR_FORMATS_BLOB_LIBS
+              linker flags for DRM_COMPOSITOR_FORMATS_BLOB, overriding
+              pkg-config
+  DRM_COMPOSITOR_GBM_MODIFIERS_CFLAGS
+              C compiler flags for DRM_COMPOSITOR_GBM_MODIFIERS, overriding
+              pkg-config
+  DRM_COMPOSITOR_GBM_MODIFIERS_LIBS
+              linker flags for DRM_COMPOSITOR_GBM_MODIFIERS, overriding
+              pkg-config
+  DRM_COMPOSITOR_GBM_CFLAGS
+              C compiler flags for DRM_COMPOSITOR_GBM, overriding pkg-config
+  DRM_COMPOSITOR_GBM_LIBS
+              linker flags for DRM_COMPOSITOR_GBM, overriding pkg-config
+  LIBINPUT_BACKEND_CFLAGS
+              C compiler flags for LIBINPUT_BACKEND, overriding pkg-config
+  LIBINPUT_BACKEND_LIBS
+              linker flags for LIBINPUT_BACKEND, overriding pkg-config
+  COMPOSITOR_CFLAGS
+              C compiler flags for COMPOSITOR, overriding pkg-config
+  COMPOSITOR_LIBS
+              linker flags for COMPOSITOR, overriding pkg-config
+  WAYLAND_PROTOCOLS_CFLAGS
+              C compiler flags for WAYLAND_PROTOCOLS, overriding pkg-config
+  WAYLAND_PROTOCOLS_LIBS
+              linker flags for WAYLAND_PROTOCOLS, overriding pkg-config
+  WAYLAND_COMPOSITOR_CFLAGS
+              C compiler flags for WAYLAND_COMPOSITOR, overriding pkg-config
+  WAYLAND_COMPOSITOR_LIBS
+              linker flags for WAYLAND_COMPOSITOR, overriding pkg-config
+  WAYLAND_COMPOSITOR_EGL_CFLAGS
+              C compiler flags for WAYLAND_COMPOSITOR_EGL, overriding
+              pkg-config
+  WAYLAND_COMPOSITOR_EGL_LIBS
+              linker flags for WAYLAND_COMPOSITOR_EGL, overriding pkg-config
+  FBDEV_COMPOSITOR_CFLAGS
+              C compiler flags for FBDEV_COMPOSITOR, overriding pkg-config
+  FBDEV_COMPOSITOR_LIBS
+              linker flags for FBDEV_COMPOSITOR, overriding pkg-config
+  RDP_COMPOSITOR_CFLAGS
+              C compiler flags for RDP_COMPOSITOR, overriding pkg-config
+  RDP_COMPOSITOR_LIBS
+              linker flags for RDP_COMPOSITOR, overriding pkg-config
+  SCREEN_SHARE_CFLAGS
+              C compiler flags for SCREEN_SHARE, overriding pkg-config
+  SCREEN_SHARE_LIBS
+              linker flags for SCREEN_SHARE, overriding pkg-config
+  PIXMAN_CFLAGS
+              C compiler flags for PIXMAN, overriding pkg-config
+  PIXMAN_LIBS linker flags for PIXMAN, overriding pkg-config
+  PNG_CFLAGS  C compiler flags for PNG, overriding pkg-config
+  PNG_LIBS    linker flags for PNG, overriding pkg-config
+  WEBP_CFLAGS C compiler flags for WEBP, overriding pkg-config
+  WEBP_LIBS   linker flags for WEBP, overriding pkg-config
+  LIBVA_CFLAGS
+              C compiler flags for LIBVA, overriding pkg-config
+  LIBVA_LIBS  linker flags for LIBVA, overriding pkg-config
+  CAIRO_CFLAGS
+              C compiler flags for CAIRO, overriding pkg-config
+  CAIRO_LIBS  linker flags for CAIRO, overriding pkg-config
+  TEST_CLIENT_CFLAGS
+              C compiler flags for TEST_CLIENT, overriding pkg-config
+  TEST_CLIENT_LIBS
+              linker flags for TEST_CLIENT, overriding pkg-config
+  SIMPLE_CLIENT_CFLAGS
+              C compiler flags for SIMPLE_CLIENT, overriding pkg-config
+  SIMPLE_CLIENT_LIBS
+              linker flags for SIMPLE_CLIENT, overriding pkg-config
+  SIMPLE_EGL_CLIENT_CFLAGS
+              C compiler flags for SIMPLE_EGL_CLIENT, overriding pkg-config
+  SIMPLE_EGL_CLIENT_LIBS
+              linker flags for SIMPLE_EGL_CLIENT, overriding pkg-config
+  SIMPLE_DMABUF_DRM_CLIENT_CFLAGS
+              C compiler flags for SIMPLE_DMABUF_DRM_CLIENT, overriding
+              pkg-config
+  SIMPLE_DMABUF_DRM_CLIENT_LIBS
+              linker flags for SIMPLE_DMABUF_DRM_CLIENT, overriding pkg-config
+  LIBDRM_PLATFORM_FREEDRENO_CFLAGS
+              C compiler flags for LIBDRM_PLATFORM_FREEDRENO, overriding
+              pkg-config
+  LIBDRM_PLATFORM_FREEDRENO_LIBS
+              linker flags for LIBDRM_PLATFORM_FREEDRENO, overriding
+              pkg-config
+  LIBDRM_PLATFORM_INTEL_CFLAGS
+              C compiler flags for LIBDRM_PLATFORM_INTEL, overriding
+              pkg-config
+  LIBDRM_PLATFORM_INTEL_LIBS
+              linker flags for LIBDRM_PLATFORM_INTEL, overriding pkg-config
+  LIBDRM_PLATFORM_ETNAVIV_CFLAGS
+              C compiler flags for LIBDRM_PLATFORM_ETNAVIV, overriding
+              pkg-config
+  LIBDRM_PLATFORM_ETNAVIV_LIBS
+              linker flags for LIBDRM_PLATFORM_ETNAVIV, overriding pkg-config
+  SIMPLE_DMABUF_V4L_CLIENT_CFLAGS
+              C compiler flags for SIMPLE_DMABUF_V4L_CLIENT, overriding
+              pkg-config
+  SIMPLE_DMABUF_V4L_CLIENT_LIBS
+              linker flags for SIMPLE_DMABUF_V4L_CLIENT, overriding pkg-config
+  CLIENT_CFLAGS
+              C compiler flags for CLIENT, overriding pkg-config
+  CLIENT_LIBS linker flags for CLIENT, overriding pkg-config
+  SERVER_CFLAGS
+              C compiler flags for SERVER, overriding pkg-config
+  SERVER_LIBS linker flags for SERVER, overriding pkg-config
+  WESTON_INFO_CFLAGS
+              C compiler flags for WESTON_INFO, overriding pkg-config
+  WESTON_INFO_LIBS
+              linker flags for WESTON_INFO, overriding pkg-config
+  CAIRO_EGL_CFLAGS
+              C compiler flags for CAIRO_EGL, overriding pkg-config
+  CAIRO_EGL_LIBS
+              linker flags for CAIRO_EGL, overriding pkg-config
+  PANGO_CFLAGS
+              C compiler flags for PANGO, overriding pkg-config
+  PANGO_LIBS  linker flags for PANGO, overriding pkg-config
+  COLORD_CFLAGS
+              C compiler flags for COLORD, overriding pkg-config
+  COLORD_LIBS linker flags for COLORD, overriding pkg-config
+  DBUS_CFLAGS C compiler flags for DBUS, overriding pkg-config
+  DBUS_LIBS   linker flags for DBUS, overriding pkg-config
+  SYSTEMD_LOGIN_CFLAGS
+              C compiler flags for SYSTEMD_LOGIN, overriding pkg-config
+  SYSTEMD_LOGIN_LIBS
+              linker flags for SYSTEMD_LOGIN, overriding pkg-config
+  LIBXML2_CFLAGS
+              C compiler flags for LIBXML2, overriding pkg-config
+  LIBXML2_LIBS
+              linker flags for LIBXML2, overriding pkg-config
+  WCAP_CFLAGS C compiler flags for WCAP, overriding pkg-config
+  WCAP_LIBS   linker flags for WCAP, overriding pkg-config
+  SETBACKLIGHT_CFLAGS
+              C compiler flags for SETBACKLIGHT, overriding pkg-config
+  SETBACKLIGHT_LIBS
+              linker flags for SETBACKLIGHT, overriding pkg-config
+  LCMS_CFLAGS C compiler flags for LCMS, overriding pkg-config
+  LCMS_LIBS   linker flags for LCMS, overriding pkg-config
+  WAYLAND_SCANNER_CFLAGS
+              C compiler flags for WAYLAND_SCANNER, overriding pkg-config
+  WAYLAND_SCANNER_LIBS
+              linker flags for WAYLAND_SCANNER, overriding pkg-config
+  SYSTEMD_DAEMON_CFLAGS
+              C compiler flags for SYSTEMD_DAEMON, overriding pkg-config
+  SYSTEMD_DAEMON_LIBS
+              linker flags for SYSTEMD_DAEMON, overriding pkg-config
+
+Use these variables to override the choices made by `configure' or to help
+it to find libraries and programs with nonstandard names/locations.
+
+Report bugs to <https://gitlab.freedesktop.org/wayland/weston/issues/>.
+weston home page: <https://wayland.freedesktop.org>.
