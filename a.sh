@@ -57,6 +57,7 @@ echo -e " ${NC}"
 
 
 # eth.addr == f8:dc:7a:52:df:76
+# (eth.addr == f8:dc:7a:52:df:76 or dhcp.id in {0xd1cc7245 0x37688432}) and dhcp
 #	--with-sysroot=/home/imx8/InstallQt/sysroot \
 # ./configure --with-cairo=image \
 # -rpath-link ${SYSROOT}/usr/lib
@@ -64,6 +65,7 @@ echo -e " ${NC}"
 #  CFLAGS -Wl     ,--allow-shlib-undefined
 #  CFLAGS -Wl     ,--verbose
 #
+	# --enable-rdp-compositor \
 	# CC="${TOOLCHAIN}/aarch64-linux-gnu-gcc" \
 	# CPP="${TOOLCHAIN}/aarch64-linux-gnu-cpp" \
 	# LD="${TOOLCHAIN}/aarch64-linux-gnu-ld" \
@@ -84,7 +86,6 @@ echo -e " ${NC}"
 	--enable-headless-compositor \
 	--enable-wayland-compositor \
 	--enable-x11-compositor \
-	--enable-rdp-compositor \
 	--enable-screen-sharing \
 	--enable-systemd-notify \
 	--enable-xwayland \
@@ -249,5 +250,10 @@ dpkg-deb --root-owner-group --build ${DEB_LIBD}
 
 
 echo " "
+echo " MAKE SD-card"
+echo " "
+echo "rm -rf ../debian_imx8qxp-var-som/variscite/deb/weston/imx8qxm-dpu-g2d/*.deb"
+echo "cp *.deb ../debian_imx8qxp-var-som/variscite/deb/weston/imx8qxm-dpu-g2d/"
+echo "cd ../debian_imx8qxp-var-som"
 echo "sudo MACHINE=imx8qxp-var-som ./var_make_debian.sh -c rootfs |& tee rootfs.log"
 echo "sudo MACHINE=imx8qxp-var-som ./var_make_debian.sh -c sdcard -d /dev/mmcblk0"
