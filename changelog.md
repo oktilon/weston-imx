@@ -1,21 +1,9 @@
 weston (5.0.0-3-var-dpu-g2d) stretch-backports; urgency=medium
 
-  * With rdp-backend
-  * Add freerdp2-dev to Depends
-  * Add folders to make deb's
+  * With rdp-backend (--enable-rdp-compositor)
+  * Add libreerdp-server2-2 to Depends
 
- -- Stovbun Denis <denis.stovbun@lanars.com> Tue, 24 May 2022 11:37:00 +0200
-
-weston (5.0.0-3-var-dpu-g2d) stretch-backports; urgency=medium
-
-  * Port NXP patches
-
- -- Harshesh Valera <harshesh.v@variscite.com> Thu, 14 Jun 2019 20:16:00 -0800
-weston (5.0.0-3-var) stretch-backports; urgency=medium
-
-  * Port NXP patches
-
- -- Harshesh Valera <harshesh.v@variscite.com> Thu, 14 Jun 2019 20:16:00 -0800
+ -- Stovbun Denis <denis.stovbun@lanars.com> Tue, 23 Jun 2022 17:48:00 +0200
 
 weston (5.0.0-3) unstable; urgency=medium
 
