@@ -23,3 +23,4 @@ idle-time=0
 
 [screen-share]
 command=@bindir@/weston --backend=rdp-backend.so --shell=fullscreen-shell.so --no-clients-resize
+#start-on-startup=false

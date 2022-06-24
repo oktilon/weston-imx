@@ -551,6 +551,12 @@ sets the path to the xserver to run (string).
 sets the command to start a fullscreen-shell server for screen sharing (string).
 .RE
 .RE
+.TP 7
+.BI "start-on-startup=" "false"
+If set to true, start screen sharing of all outputs available on Weston startup.
+Set to false by default.
+.RE
+.RE
 .SH "SEE ALSO"
 .BR weston (1),
 .BR weston-launch (1),
