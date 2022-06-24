@@ -119,7 +119,7 @@ dpkg-deb --root-owner-group --build ${DEB_LIB5}
 cd $PROJECT_DIR
 
 
-if [ WITH_DEV -gt 0 ]
+if [ $WITH_DEV -gt 0 ]
 then
     echo " "
     echo -e "Make ${GREEN}${DEB_LIBD}.deb${NC} package"
