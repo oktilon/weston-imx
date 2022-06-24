@@ -905,6 +905,8 @@ shared_output_create(struct weston_output *output, int parent_fd)
 
 	wl_list_init(&so->seat_list);
 
+	weston_log("Screen share create for: %d\n", parent_fd);
+
 	so->parent.display = wl_display_connect_to_fd(parent_fd);
 	if (!so->parent.display)
 		goto err_alloc;
@@ -1143,8 +1145,10 @@ wet_module_init(struct weston_compositor *compositor,
 
 	if (weston_config_section_get_bool(section, "start-on-startup",
 					   &start_on_startup, false) == 0) {
-		wl_list_for_each(output, &compositor->output_list, link)
+		wl_list_for_each(output, &compositor->output_list, link) {
+			weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
 			weston_output_share(output, ss->command);
+		}
 	}
 
 	return 0;
