@@ -2452,6 +2452,9 @@ int main(int argc, char *argv[])
 	struct wet_compositor wet = { 0 };
 	int require_input;
 	int32_t wait_for_debugger = 0;
+	bool start_on_startup = false;
+	struct weston_output *output;
+	char *ss_command = NULL;
 
 	const struct weston_option core_options[] = {
 		{ WESTON_OPTION_STRING, "backend", 'B', &backend },
@@ -2638,6 +2641,17 @@ int main(int argc, char *argv[])
 							  WESTON_NUM_LOCK);
 		}
 	}
+
+	section = weston_config_get_section(config, "screen-share", NULL, NULL);
+	weston_config_section_get_string(section, "command", &ss_command, "");
+	if (weston_config_section_get_bool(section, "start-on-startup",
+					   &start_on_startup, false) == 0) {
+		wl_list_for_each(output, &wet.compositor->output_list, link) {
+			weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
+			weston_output_share(output, ss_command);
+		}
+	}
+
 
 	for (i = 1; i < argc; i++)
 		weston_log("fatal: unhandled option: %s\n", argv[i]);

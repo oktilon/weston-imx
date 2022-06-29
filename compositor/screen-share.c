@@ -693,6 +693,8 @@ shm_handle_format(void *data, struct wl_shm *wl_shm, uint32_t format)
 {
 	struct shared_output *so = data;
 
+	weston_log("shm_handle_format: got format=%u\n", format);
+
 	so->parent.shm_formats |= (1 << format);
 }
 
@@ -705,6 +707,8 @@ registry_handle_global(void *data, struct wl_registry *registry,
 		       uint32_t id, const char *interface, uint32_t version)
 {
 	struct shared_output *so = data;
+
+	weston_log("registry_handle_global: interface=%s\n", interface);
 
 	if (strcmp(interface, "wl_compositor") == 0) {
 		so->parent.compositor =
@@ -897,7 +901,7 @@ shared_output_create(struct weston_output *output, int parent_fd)
 	struct shared_output *so;
 	struct wl_event_loop *loop;
 	struct ss_seat *seat, *tmp;
-	int epoll_fd;
+	int epoll_fd, tm;
 
 	so = zalloc(sizeof *so);
 	if (so == NULL)
@@ -916,7 +920,9 @@ shared_output_create(struct weston_output *output, int parent_fd)
 		goto err_display;
 	wl_registry_add_listener(so->parent.registry,
 				 &registry_listener, so);
+
 	wl_display_roundtrip(so->parent.display);
+
 	if (so->parent.shm == NULL) {
 		weston_log("Screen share failed: No wl_shm found\n");
 		goto err_display;
@@ -1069,6 +1075,7 @@ weston_output_share(struct weston_output *output, const char* command)
 		snprintf(str, sizeof str, "%d", sv[1]);
 		setenv("WAYLAND_SERVER_SOCKET", str, 1);
 
+		weston_log("weston_output_share: execv %s -c %s\n", argv[0], argv[2]);
 		execv(argv[0], argv);
 		weston_log("weston_output_share: exec failed: %m\n");
 		abort();
@@ -1128,7 +1135,7 @@ wet_module_init(struct weston_compositor *compositor,
 	struct weston_output *output;
 	struct weston_config *config = wet_get_config(compositor);
 	struct weston_config_section *section;
-	bool start_on_startup = false;
+	// bool start_on_startup = false;
 
 	ss = zalloc(sizeof *ss);
 	if (ss == NULL)
@@ -1143,13 +1150,13 @@ wet_module_init(struct weston_compositor *compositor,
 				          MODIFIER_CTRL | MODIFIER_ALT,
 					  share_output_binding, ss);
 
-	if (weston_config_section_get_bool(section, "start-on-startup",
-					   &start_on_startup, false) == 0) {
-		wl_list_for_each(output, &compositor->output_list, link) {
-			weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
-			weston_output_share(output, ss->command);
-		}
-	}
+	// if (weston_config_section_get_bool(section, "start-on-startup",
+	// 				   &start_on_startup, false) == 0) {
+	// 	wl_list_for_each(output, &compositor->output_list, link) {
+	// 		weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
+	// 		weston_output_share(output, ss->command);
+	// 	}
+	// }
 
 	return 0;
 }
