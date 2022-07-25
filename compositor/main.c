@@ -117,6 +117,8 @@ struct wet_compositor {
 	struct wl_list layoutput_list;	/**< wet_layoutput::compositor_link */
 };
 
+void (*start_share)(struct weston_output *output, const char *command);
+
 static FILE *weston_logfile = NULL;
 
 static int cached_tm_mday = -1;
@@ -705,6 +707,47 @@ weston_create_listening_socket(struct wl_display *display, const char *socket_na
 	return 0;
 }
 
+static void *
+weston_get_module_method(const char *name, const char *method)
+{
+	char path[PATH_MAX];
+	void *module, *addr;
+	size_t len;
+
+	if (name == NULL)
+		return NULL;
+
+	if (name[0] != '/') {
+		len = weston_module_path_from_env(name, path, sizeof path);
+		if (len == 0)
+			len = snprintf(path, sizeof path, "%s/%s", MODULEDIR,
+				       name);
+	} else {
+		len = snprintf(path, sizeof path, "%s", name);
+	}
+
+	/* snprintf returns the length of the string it would've written,
+	 * _excluding_ the NUL byte. So even being equal to the size of
+	 * our buffer is an error here. */
+	if (len >= sizeof path)
+		return NULL;
+
+	module = dlopen(path, RTLD_NOW | RTLD_NOLOAD);
+	if (!module) {
+		weston_log("Module '%s' not loaded yet\n", path);
+		return NULL;
+	}
+
+	addr = dlsym(module, method);
+	if (!addr) {
+		weston_log("Failed to lookup method function: %s\n", dlerror());
+		dlclose(module);
+		return NULL;
+	}
+
+	return addr;
+}
+
 WL_EXPORT void *
 wet_load_module_entrypoint(const char *name, const char *entrypoint)
 {
@@ -825,6 +868,10 @@ load_modules(struct weston_compositor *ec, const char *modules,
 		} else {
 			if (wet_load_module(ec, buffer, argc, argv) < 0)
 				return -1;
+		}
+
+		if (strstr(buffer, "screen-share.so")) {
+			start_share = weston_get_module_method(buffer, "wet_start_share");
 		}
 
 		p = end;
@@ -2452,7 +2499,7 @@ int main(int argc, char *argv[])
 	struct wet_compositor wet = { 0 };
 	int require_input;
 	int32_t wait_for_debugger = 0;
-	bool start_on_startup = false;
+	int32_t start_on_startup = 0;
 	struct weston_output *output;
 	char *ss_command = NULL;
 
@@ -2628,6 +2675,12 @@ int main(int argc, char *argv[])
 			goto out;
 	}
 
+	if (start_share) {
+		weston_log("Has start_share\n");
+	} else {
+		weston_log("Has not start_share\n");
+	}
+
 	section = weston_config_get_section(config, "keyboard", NULL, NULL);
 	weston_config_section_get_bool(section, "numlock-on", &numlock_on, 0);
 	if (numlock_on) {
@@ -2644,11 +2697,11 @@ int main(int argc, char *argv[])
 
 	section = weston_config_get_section(config, "screen-share", NULL, NULL);
 	weston_config_section_get_string(section, "command", &ss_command, "");
-	if (weston_config_section_get_bool(section, "start-on-startup",
-					   &start_on_startup, false) == 0) {
+	weston_config_section_get_bool(section, "start-on-startup", &start_on_startup, 0);
+	if (start_on_startup && start_share) {
+		weston_log("Has start-on-startup\n");
 		wl_list_for_each(output, &wet.compositor->output_list, link) {
-			weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
-			weston_output_share(output, ss_command);
+			start_share(output, ss_command);
 		}
 	}
 

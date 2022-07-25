@@ -901,13 +901,14 @@ shared_output_create(struct weston_output *output, int parent_fd)
 	struct shared_output *so;
 	struct wl_event_loop *loop;
 	struct ss_seat *seat, *tmp;
-	int epoll_fd, tm;
+	int epoll_fd;
 
 	so = zalloc(sizeof *so);
 	if (so == NULL)
 		goto err_close;
 
 	wl_list_init(&so->seat_list);
+
 
 	weston_log("Screen share create for: %d\n", parent_fd);
 
@@ -1127,12 +1128,18 @@ share_output_binding(struct weston_keyboard *keyboard,
 	weston_output_share(output, ss->command);
 }
 
+WL_EXPORT void
+wet_start_share(struct weston_output *output, const char *command) {
+	weston_log("Start share for output id=%i, pos=(%i, %i), size=(%i, %i) \n", output->id, output->x, output->y, output->width, output->height);
+	weston_output_share(output, command);
+}
+
 WL_EXPORT int
 wet_module_init(struct weston_compositor *compositor,
 		int *argc, char *argv[])
 {
 	struct screen_share *ss;
-	struct weston_output *output;
+	// struct weston_output *output;
 	struct weston_config *config = wet_get_config(compositor);
 	struct weston_config_section *section;
 	// bool start_on_startup = false;

@@ -72,6 +72,9 @@ wet_module_init(struct weston_compositor *ec,
 int
 wet_load_module(struct weston_compositor *compositor,
 	        const char *name, int *argc, char *argv[]);
+void
+wet_start_share(struct weston_output *output, const char *command);
+
 
 int
 module_init(struct weston_compositor *compositor,
